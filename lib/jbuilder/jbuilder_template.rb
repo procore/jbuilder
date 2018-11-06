@@ -199,6 +199,7 @@ class JbuilderTemplate < Jbuilder
     when ::Hash
       # partial! partial: 'name', foo: 'bar'
       options = name_or_options
+      options[:locals] ||= options.except(:partial, :as, :collection)
     else
       # partial! 'name', locals: {foo: 'bar'}
       if locals.one? && (locals.keys.first == :locals)
